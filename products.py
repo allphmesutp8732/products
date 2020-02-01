@@ -1,11 +1,15 @@
+import os
 products = []
 #讀取檔案
-with open("products.csv", "r", encoding = "utf-8") as f:
-	for line in f:
-		if "商品,價格" in line:
-			continue
-		name, price = line.strip().split(",")
-		products.append([name, price])
+if os.path.isfile("products.csv"):
+	with open("products.csv", "r", encoding = "utf-8") as f:
+		for line in f:
+			if "商品,價格" in line:
+				continue
+			name, price = line.strip().split(",")
+			products.append([name, price])
+else:
+	print("找不到 products.csv")
 
 #輸入商品、價格
 while True:
